@@ -47,15 +47,16 @@ import {
 import { cn } from "@/lib/utils";
 import { z } from "zod";
 
-// Extend stock movement schema with financial fields
-const formSchema = insertStockMovementSchema
-  .omit({ userId: true, financialMovementId: true })
-  .extend({
-    createFinancialRecord: z.boolean().optional(),
-    paymentMethod: z.string().optional(),
-    contact: z.string().optional(),
-    notes: z.string().optional(),
-  });
+// Define a precise schema for form validation
+const formSchema = z.object({
+  movementDate: z.date(),
+  movementType: z.enum(["in", "out"]),
+  eggCount: z.number().min(0, "Quantidade de ovos deve ser positiva"),
+  notes: z.string().optional().default(""),
+  createFinancialRecord: z.boolean().default(false),
+  paymentMethod: z.string().optional().default(""),
+  contact: z.string().optional().default(""),
+});
 
 type FormValues = z.infer<typeof formSchema>;
 
@@ -241,10 +242,11 @@ export default function StockMovementForm({ onSuccess }: StockMovementFormProps)
                         type="number"
                         min={0}
                         placeholder="0"
-                        {...field}
-                        onChange={(e) =>
-                          field.onChange(parseInt(e.target.value) || 0)
-                        }
+                        value={field.value || 0}
+                        onChange={(e) => field.onChange(parseInt(e.target.value) || 0)}
+                        onBlur={field.onBlur}
+                        ref={field.ref}
+                        name={field.name}
                       />
                     </FormControl>
                     <FormDescription>
@@ -313,7 +315,14 @@ export default function StockMovementForm({ onSuccess }: StockMovementFormProps)
                       <FormItem>
                         <FormLabel>Cliente (opcional)</FormLabel>
                         <FormControl>
-                          <Input placeholder="Nome do cliente" {...field} />
+                          <Input 
+                            placeholder="Nome do cliente" 
+                            value={field.value || ""}
+                            onChange={field.onChange}
+                            onBlur={field.onBlur}
+                            ref={field.ref}
+                            name={field.name}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>

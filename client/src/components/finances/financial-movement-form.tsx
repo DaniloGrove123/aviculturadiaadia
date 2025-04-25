@@ -7,6 +7,7 @@ import { format } from "date-fns";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { z } from "zod";
 
 import {
   Dialog,
@@ -45,10 +46,21 @@ import {
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 
-// Use insertFinancialMovementSchema but omit userId
-const formSchema = insertFinancialMovementSchema.omit({ userId: true });
+// Define schema directly for better type control
+const formSchema = z.object({
+  movementDate: z.date(),
+  movementType: z.enum(["income", "expense"]),
+  category: z.string(),
+  amount: z.string().or(z.number()).refine(val => {
+    const num = typeof val === 'string' ? parseFloat(val) : val;
+    return !isNaN(num) && num >= 0;
+  }, "Valor deve ser positivo"),
+  paymentMethod: z.string(),
+  contact: z.string().optional(),
+  notes: z.string().optional(),
+});
 
-type FormValues = typeof formSchema._type;
+type FormValues = z.infer<typeof formSchema>;
 
 interface FinancialMovementFormProps {
   onSuccess?: () => void;
@@ -339,7 +351,11 @@ export default function FinancialMovementForm({ onSuccess }: FinancialMovementFo
                     <FormControl>
                       <Input 
                         placeholder={`Nome do ${movementType === "income" ? "cliente" : "fornecedor"}`} 
-                        {...field} 
+                        value={field.value || ""}
+                        onChange={field.onChange}
+                        onBlur={field.onBlur}
+                        ref={field.ref}
+                        name={field.name}
                       />
                     </FormControl>
                     <FormMessage />
