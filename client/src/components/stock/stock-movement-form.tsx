@@ -54,6 +54,7 @@ const formSchema = insertStockMovementSchema
     createFinancialRecord: z.boolean().optional(),
     paymentMethod: z.string().optional(),
     contact: z.string().optional(),
+    notes: z.string().optional(),
   });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -330,7 +331,11 @@ export default function StockMovementForm({ onSuccess }: StockMovementFormProps)
                     <FormControl>
                       <Textarea
                         placeholder="Alguma observação sobre esta movimentação?"
-                        {...field}
+                        value={field.value || ""}
+                        onChange={field.onChange}
+                        onBlur={field.onBlur}
+                        ref={field.ref}
+                        name={field.name}
                       />
                     </FormControl>
                     <FormMessage />
