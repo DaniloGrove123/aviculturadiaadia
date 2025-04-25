@@ -78,7 +78,7 @@ export default function AppLayout({ children, title }: AppLayoutProps) {
               onClick={closeSidebar}
               className={`flex items-center space-x-3 px-3 py-2 rounded-lg 
                 ${isActive 
-                  ? "bg-primary bg-opacity-10 text-primary border-l-4 border-primary" 
+                  ? "bg-primary/10 text-white border-l-4 border-primary" 
                   : "hover:bg-gray-800 text-gray-100"
                 }`}
             >
