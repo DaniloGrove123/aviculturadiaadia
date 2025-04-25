@@ -1,0 +1,291 @@
+PRD - Modern SaaS para Controle de Granja Avícola (MVP - Atualizado)
+1. Introdução
+Este Product Requirements Document (PRD) descreve um Software as a Service (SaaS) para gerenciar postura, estoque e finanças de granjas avícolas, substituindo planilhas manuais. Inspirado no design moderno do vídeo "Criando 1 Micro SaaS com 7 IAs" (YouTube), o sistema será desenvolvido no Replit, aproveitando sua colaboração, IA (Replit Agent) e implantação simplificada. O objetivo é criar um MVP funcional, intuitivo e visualmente atraente, com foco em pequenos e médios produtores.
+1.1 Objetivos
+
+Automatizar o controle de coletas de ovos, estoque e finanças.
+Usar um número fixo de galinhas para cálculos de postura, eliminando preenchimentos repetitivos.
+Registrar coletas por parte do dia (manhã e tarde) com interface dinâmica.
+Oferecer um design moderno, inspirado em SaaS contemporâneos, com tema escuro e cores vibrantes.
+Implantar rapidamente usando o Replit.
+
+1.2 Público-Alvo
+
+Proprietários e gestores de granjas avícolas.
+Administradores do SaaS para gerenciar usuários e assinaturas.
+
+2. Análise dos Vídeos
+2.1 Vídeo: "Replit Agent: Como Criar um SaaS em 10 Minutos com IA"
+
+Resumo: O vídeo (YouTube) demonstra como o Replit Agent, uma ferramenta de IA, permite criar um SaaS rapidamente, gerando código a partir de prompts em linguagem natural.
+Aplicações no Projeto:
+Geração de Código: Use o Replit Agent para criar componentes React, rotas Express e schemas Prisma com prompts como "Crie um formulário para registrar coletas de ovos".
+Colaboração: O Replit permite que você e sua equipe trabalhem no mesmo projeto em tempo real.
+Implantação: Hospede o SaaS diretamente no Replit, simplificando o deploy.
+
+
+
+2.2 Vídeo: "Criando 1 Micro SaaS com 7 IAs - Essa Foi a Melhor!"
+
+Resumo: O vídeo (YouTube) mostra a criação de um micro SaaS com design moderno, usando várias IAs para acelerar o desenvolvimento. O design é limpo, com tema escuro, cores vibrantes (como indigo e pink) e animações suaves.
+Aplicações no Projeto:
+Design Inspirado: Replique o tema escuro com cores indigo e pink, usando Tailwind CSS e Shadcn/ui.
+Animações: Adicione transições suaves com Framer Motion, como no vídeo.
+IA para Design: Solicite à IA que gere layouts baseados em descrições como "Crie uma página de dashboard com tema escuro e cards animados".
+
+
+
+3. Tecnologias Recomendadas
+
+
+
+Categoria
+Tecnologia
+Justificativa
+
+
+
+Frontend
+React com Vite
+Leve, rápido e compatível com Replit (React).
+
+
+Frontend
+Shadcn/ui
+Componentes acessíveis e personalizáveis (Shadcn/ui).
+
+
+Frontend
+Tailwind CSS
+Estilização rápida e responsiva (Tailwind CSS).
+
+
+Frontend
+Framer Motion
+Animações suaves para transições (Framer Motion).
+
+
+Frontend
+Heroicons
+Ícones modernos e consistentes (Heroicons).
+
+
+Backend
+Node.js com Express
+APIs RESTful robustas (Express).
+
+
+Banco de Dados
+Prisma com PostgreSQL
+Gerenciamento eficiente de dados (Prisma).
+
+
+Autenticação
+JWT
+Sessões seguras e simples.
+
+
+Pagamentos
+Stripe
+Gerenciamento de assinaturas (Stripe).
+
+
+Design
+Figma
+Prototipagem de interfaces (Figma).
+
+
+Desenvolvimento
+Replit Agent
+Geração de código com IA (Replit).
+
+
+4. Design e Estilização
+4.1 Inspiração
+O design do vídeo "Criando 1 Micro SaaS com 7 IAs" apresenta:
+
+Tema Escuro: Fundo escuro com cores vibrantes (indigo e pink).
+Tipografia: Fontes modernas como Inter ou Roboto.
+Layout: Navegação lateral em desktops, menu hambúrguer em móveis.
+Animações: Transições suaves ao carregar páginas ou interagir com elementos.
+Componentes: Botões, formulários e tabelas estilizados com aparência profissional.
+
+4.2 Como Replicar
+
+Figma para Prototipagem: Crie wireframes no Figma inspirados em templates SaaS modernos (Figma Community).
+Shadcn/ui e Tailwind CSS: Use componentes pré-construídos do Shadcn/ui e estilize com Tailwind CSS para criar um layout responsivo.
+Framer Motion: Adicione animações para transições de página e interações com formulários.
+Heroicons: Inclua ícones para melhorar a usabilidade e estética.
+
+4.3 Prompts para IA
+Para solicitar à IA (Replit Agent ou outras) que melhore o design:
+
+Layout do Dashboard:Crie um layout de dashboard para um SaaS de granja avícola usando React, Shadcn/ui e Tailwind CSS. O design deve ter:
+- Tema escuro com cores indigo e pink.
+- Um header com navegação (Dashboard, Coletas, Estoque, Finanças, Configurações).
+- Cards animados para exibir estoque atual, coletas de hoje e saldo financeiro.
+- Uma tabela para as últimas coletas (data, período, quantidade).
+- Use Framer Motion para animações de entrada dos cards.
+
+
+Formulário de Coleta:Gere um componente React para registrar coletas de ovos com:
+- Um botão "+" que abre um modal com formulário.
+- Campos para data, período (manhã/tarde) e quantidade de ovos.
+- Validação para quantidade positiva.
+- Estilização com Shadcn/ui e Tailwind CSS, tema escuro.
+- Animação de abertura do modal com Framer Motion.
+
+
+
+5. Funcionalidades
+5.1 Autenticação
+
+Login e Registro: Formulários com e-mail e senha.
+Recuperação de Senha: Envio de e-mail para redefinição.
+
+5.2 Configuração do Plantel
+
+Número de Galinhas: Definir número fixo para cálculos de postura.
+Preço de Venda: Configurar preço por ovo/dúzia.
+Histórico: Registro de alterações no número de galinhas.
+
+5.3 Controle de Postura
+
+Registro de Coletas: Botão "+" para abrir modal com campos para data, período (manhã/tarde) e quantidade.
+Cálculo de Postura: Percentual automático (ovos / galinhas * 100).
+Coletas em Tempo Real: Resumo do dia (manhã, tarde, total).
+Histórico: Tabela com coletas, com opções de edição e exclusão.
+
+5.4 Controle de Estoque
+
+Entradas: Coletas registradas automaticamente.
+Saídas: Vendas ou perdas com baixa automática.
+Integração Financeira: Vendas geram entradas financeiras.
+Saldo: Exibição em tempo real.
+
+5.5 Seção Financeira
+
+Entradas/Saídas: Registro com categoria, valor, forma de pagamento e contato.
+Resumo Mensal: Totais de ovos vendidos, entradas, saídas e saldo.
+Histórico: Tabela detalhada.
+
+5.6 Painel Administrativo
+
+Gerenciamento de Usuários: Listagem, redefinição de senha, bloqueio/desbloqueio.
+Controle de Assinaturas: Visualizar status (pago/gratuito).
+
+5.7 Assinaturas e Pagamentos
+
+Stripe: Planos gratuito e pago.
+Checkout: Página para pagamento.
+Gerenciamento: Visualizar/cancelar assinatura.
+
+6. Schema do Banco de Dados
+Mantém o schema anterior, com ênfase no campo period em egg_collections.
+
+
+
+Tabela
+Campos Principais
+
+
+
+users
+id, email, password, name, farm_name, hen_count, egg_price, subscription_status
+
+
+hen_count_history
+id, user_id, hen_count, change_date, reason
+
+
+egg_collections
+id, user_id, collection_date, period (morning/afternoon), egg_count, posture_percentage
+
+
+stock_movements
+id, user_id, movement_type, egg_count, movement_date, financial_movement_id
+
+
+stock_balance
+id, user_id, egg_count, updated_at
+
+
+financial_movements
+id, user_id, movement_type, category, amount, movement_date, payment_method, contact
+
+
+financial_balance
+id, user_id, balance, updated_at
+
+
+7. Processo de Desenvolvimento
+
+Plataforma: Replit.
+Etapas:
+Configurar projeto com React, Vite, Express e Prisma.
+Implementar autenticação com JWT.
+Desenvolver funcionalidades (postura, estoque, finanças).
+Integrar Stripe.
+Estilizar com Shadcn/ui, Tailwind CSS e Framer Motion.
+Testar com dados reais.
+Implantar no Replit.
+
+
+
+8. Prompts para Desenvolvimento
+Prompt 1: Configuração do Projeto
+Crie um projeto SaaS no Replit com:
+- Frontend: React com Vite, Shadcn/ui, Tailwind CSS.
+- Backend: Node.js com Express.
+- Banco de Dados: PostgreSQL com Prisma.
+- Estrutura de pastas para frontend (src/components, src/pages) e backend (src/routes, src/models).
+- Arquivos iniciais: App.jsx, server.js, schema.prisma.
+
+Prompt 2: Autenticação
+Implemente autenticação com:
+- Rotas POST /api/auth/register e /api/auth/login usando Express e JWT.
+- Páginas React para login e registro com Shadcn/ui, tema escuro.
+- Validação de e-mail e senha.
+
+Prompt 3: Controle de Postura
+Crie um componente React para coletas de ovos com:
+- Botão "+" que abre um modal com formulário (data, período, quantidade).
+- Validação para quantidade positiva.
+- Sugestão de período (manhã/tarde) baseada no horário.
+- Tabela com coletas do dia, com opções de edição/exclusão.
+- Estilização com Shadcn/ui, Tailwind CSS, tema escuro.
+- Backend com rotas POST /api/collections, GET /api/collections, GET /api/collections/today.
+
+Prompt 4: Controle de Estoque
+Implemente o controle de estoque com:
+- Rotas POST /api/stock/movements, GET /api/stock/balance, GET /api/stock/movements.
+- Página React com formulário para vendas/perdas e tabela de movimentações.
+- Atualização em tempo real do saldo.
+- Estilização com Shadcn/ui, Tailwind CSS.
+
+Prompt 5: Seção Financeira
+Crie a seção financeira com:
+- Rotas POST /api/financial/movements, GET /api/financial/balance, GET /api/financial/movements, GET /api/financial/summary.
+- Página React com formulário para entradas/saídas e resumo mensal.
+- Estilização com Shadcn/ui, Tailwind CSS.
+
+Prompt 6: Integração com Stripe
+Integre o Stripe com:
+- Rotas POST /api/stripe/checkout, GET /api/stripe/subscription.
+- Página React para checkout e gerenciamento de assinatura.
+- Estilização com Shadcn/ui, Tailwind CSS.
+
+9. Critérios de Sucesso
+
+Interface intuitiva e moderna, inspirada no vídeo.
+Cálculos precisos de postura, estoque e finanças.
+Implantação bem-sucedida no Replit.
+10% de conversão de usuários gratuitos para pagos em 3 meses.
+
+10. Próximos Passos
+
+Configurar projeto no Replit.
+Usar prompts para gerar código e design.
+Validar com dados reais da granja.
+Coletar feedback para melhorias.
+
