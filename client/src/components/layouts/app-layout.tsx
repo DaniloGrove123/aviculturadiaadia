@@ -27,8 +27,15 @@ export default function AppLayout({ children, title }: AppLayoutProps) {
   const [location] = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
-  const closeSidebar = () => setSidebarOpen(false);
+  const toggleSidebar = () => {
+    console.log("Toggle sidebar", !sidebarOpen);
+    setSidebarOpen(!sidebarOpen);
+  };
+  
+  const closeSidebar = () => {
+    console.log("Close sidebar");
+    setSidebarOpen(false);
+  };
 
   const navItems = [
     { name: "Dashboard", href: "/", icon: <Home className="w-5 h-5" /> },
@@ -104,18 +111,23 @@ export default function AppLayout({ children, title }: AppLayoutProps) {
 
       {/* Mobile sidebar */}
       <AnimatePresence>
-        {sidebarOpen && isMobile && (
+        {sidebarOpen && (
           <motion.div 
             initial={{ x: -300 }}
             animate={{ x: 0 }}
             exit={{ x: -300 }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            className="fixed inset-0 z-50 w-64 bg-card lg:hidden"
+            className="fixed inset-0 z-50 w-64 bg-card shadow-xl lg:hidden"
           >
             <div className="flex flex-col h-full">
               <div className="absolute top-4 right-4">
-                <Button variant="ghost" size="icon" onClick={toggleSidebar}>
-                  <X className="h-6 w-6" />
+                <Button 
+                  variant="destructive" 
+                  size="icon" 
+                  onClick={toggleSidebar}
+                  className="rounded-full shadow-lg"
+                >
+                  <X className="h-5 w-5" />
                 </Button>
               </div>
               {renderSidebar()}
@@ -125,7 +137,7 @@ export default function AppLayout({ children, title }: AppLayoutProps) {
       </AnimatePresence>
 
       {/* Backdrop */}
-      {sidebarOpen && isMobile && (
+      {sidebarOpen && (
         <div 
           className="fixed inset-0 z-40 bg-black/50 lg:hidden"
           onClick={closeSidebar}
@@ -138,8 +150,15 @@ export default function AppLayout({ children, title }: AppLayoutProps) {
         <header className="bg-card border-b border-gray-800 z-10">
           <div className="flex items-center justify-between p-4">
             <div className="flex items-center lg:hidden">
-              <Button variant="ghost" size="icon" onClick={toggleSidebar}>
-                <Menu className="h-6 w-6 text-gray-500" />
+              <Button 
+                variant="outline" 
+                size="icon" 
+                onClick={toggleSidebar}
+                className="relative p-2 hover:bg-primary hover:text-white transition-colors border-primary animate-pulse hover:animate-none"
+                aria-label="Abrir menu de navegação"
+              >
+                <Menu className="h-6 w-6" />
+                <span className="sr-only">Menu de navegação</span>
               </Button>
               <h1 className="ml-2 text-xl font-bold lg:hidden gradient-text">Avicultura Dia a Dia</h1>
             </div>
