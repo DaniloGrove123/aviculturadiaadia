@@ -6,6 +6,7 @@ import { Redirect } from "wouter";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { ClipboardCheck, Package, DollarSign, Settings } from "lucide-react";
+import Logo from "@/components/ui/logo";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -95,9 +96,7 @@ export default function AuthPage() {
         >
           <div className="text-center">
             <div className="flex justify-center mb-2">
-              <svg className="w-12 h-12 text-primary" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"></path>
-              </svg>
+              <Logo className="w-12 h-12 text-primary" />
             </div>
             <h1 className="text-3xl font-bold gradient-text mb-2">Avicultura Dia a Dia</h1>
             <p className="text-gray-400 mb-8">Gerencie sua granja avícola de forma simples e eficiente</p>

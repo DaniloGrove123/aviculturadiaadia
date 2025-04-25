@@ -4,6 +4,7 @@ import { useMobile } from "@/hooks/use-mobile";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import Logo from "@/components/ui/logo";
 import { 
   Home, 
   ClipboardCheck,
@@ -56,9 +57,7 @@ export default function AppLayout({ children, title }: AppLayoutProps) {
     <>
       <div className="p-6 border-b border-gray-800">
         <div className="flex items-center space-x-2">
-          <svg className="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"></path>
-          </svg>
+          <Logo className="w-8 h-8 text-primary" />
           <h1 className="text-xl font-bold gradient-text">Avicultura Dia a Dia</h1>
         </div>
       </div>
