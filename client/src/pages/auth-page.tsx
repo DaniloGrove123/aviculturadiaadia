@@ -99,7 +99,7 @@ export default function AuthPage() {
                 <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"></path>
               </svg>
             </div>
-            <h1 className="text-3xl font-bold gradient-text mb-2">EggTrack</h1>
+            <h1 className="text-3xl font-bold gradient-text mb-2">Avicultura Dia a Dia</h1>
             <p className="text-gray-400 mb-8">Gerencie sua granja avícola de forma simples e eficiente</p>
           </div>
 
@@ -287,7 +287,7 @@ export default function AuthPage() {
           >
             <h2 className="text-4xl font-bold mb-6 gradient-text">Controle Completo da Sua Granja</h2>
             <p className="text-xl mb-8 text-gray-300">
-              Automatize e otimize a gestão da sua produção avícola com o EggTrack
+              Automatize e otimize a gestão da sua produção avícola com o Avicultura Dia a Dia
             </p>
             
             <div className="grid grid-cols-2 gap-6 mt-12">

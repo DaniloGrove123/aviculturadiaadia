@@ -59,7 +59,7 @@ export default function AppLayout({ children, title }: AppLayoutProps) {
           <svg className="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
             <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"></path>
           </svg>
-          <h1 className="text-xl font-bold gradient-text">EggTrack</h1>
+          <h1 className="text-xl font-bold gradient-text">Avicultura Dia a Dia</h1>
         </div>
       </div>
       <nav className="flex-1 p-4 space-y-1">
@@ -142,7 +142,7 @@ export default function AppLayout({ children, title }: AppLayoutProps) {
               <Button variant="ghost" size="icon" onClick={toggleSidebar}>
                 <Menu className="h-6 w-6 text-gray-500" />
               </Button>
-              <h1 className="ml-2 text-xl font-bold lg:hidden gradient-text">EggTrack</h1>
+              <h1 className="ml-2 text-xl font-bold lg:hidden gradient-text">Avicultura Dia a Dia</h1>
             </div>
             <div className="hidden lg:block">
               <h2 className="text-xl font-semibold">{title}</h2>

@@ -29,7 +29,7 @@ function Router() {
 
 function App() {
   return (
-    <ThemeProvider defaultTheme="dark" storageKey="eggtrack-theme">
+    <ThemeProvider defaultTheme="dark" storageKey="avicultura-dia-a-dia-theme">
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
           <Router />
