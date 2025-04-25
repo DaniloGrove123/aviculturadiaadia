@@ -128,11 +128,17 @@ export const insertHenCountHistorySchema = createInsertSchema(henCountHistory, {
 
 export const insertEggCollectionSchema = createInsertSchema(eggCollections, {
   eggCount: (schema) => schema.min(0, "Quantidade de ovos deve ser positiva"),
-}).omit({ createdAt: true, posturePercentage: true });
+}).omit({ createdAt: true, posturePercentage: true })
+  .extend({
+    collectionDate: z.coerce.date(),
+  });
 
 export const insertStockMovementSchema = createInsertSchema(stockMovements, {
   eggCount: (schema) => schema.min(0, "Quantidade de ovos deve ser positiva"),
-}).omit({ createdAt: true, financialMovementId: true });
+}).omit({ createdAt: true, financialMovementId: true })
+  .extend({
+    movementDate: z.coerce.date(),
+  });
 
 export const insertFinancialMovementSchema = createInsertSchema(financialMovements)
   .extend({
@@ -140,6 +146,7 @@ export const insertFinancialMovementSchema = createInsertSchema(financialMovemen
       const num = typeof val === 'string' ? parseFloat(val) : val;
       return !isNaN(num) && num >= 0;
     }, "Valor deve ser positivo"),
+    movementDate: z.coerce.date(),
   })
   .omit({ createdAt: true });
 

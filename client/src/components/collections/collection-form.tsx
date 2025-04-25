@@ -3,10 +3,11 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { insertEggCollectionSchema } from "@shared/schema";
 import { motion } from "framer-motion";
-import { format } from "date-fns";
+import { format, parse } from "date-fns";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { z } from "zod";
 
 import {
   Dialog,
@@ -42,8 +43,7 @@ import { cn } from "@/lib/utils";
 const formSchema = insertEggCollectionSchema
   .omit({ userId: true })
   .extend({
-    period: insertEggCollectionSchema.shape.period,
-    notes: insertEggCollectionSchema.shape.notes.optional(),
+    notes: z.string().optional(),
   });
 
 type FormValues = typeof formSchema._type;
@@ -245,7 +245,11 @@ export default function CollectionForm({ onSuccess }: CollectionFormProps) {
                     <FormControl>
                       <Textarea
                         placeholder="Alguma observação sobre esta coleta?"
-                        {...field}
+                        value={field.value || ""}
+                        onChange={field.onChange}
+                        onBlur={field.onBlur}
+                        ref={field.ref}
+                        name={field.name}
                       />
                     </FormControl>
                     <FormMessage />
