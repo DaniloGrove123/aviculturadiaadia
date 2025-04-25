@@ -79,7 +79,7 @@ export default function AppLayout({ children, title }: AppLayoutProps) {
               className={`flex items-center space-x-3 px-3 py-2 rounded-lg 
                 ${isActive 
                   ? "bg-primary bg-opacity-10 text-primary border-l-4 border-primary" 
-                  : "hover:bg-gray-800 text-gray-400"
+                  : "hover:bg-gray-800 text-gray-100"
                 }`}
             >
               {item.icon}
@@ -94,8 +94,8 @@ export default function AppLayout({ children, title }: AppLayoutProps) {
             <span className="font-medium text-white">{getInitials()}</span>
           </div>
           <div>
-            <p className="text-sm font-medium">{user?.name}</p>
-            <p className="text-xs text-gray-500">{user?.farmName}</p>
+            <p className="text-sm font-medium text-white">{user?.name}</p>
+            <p className="text-xs text-gray-300">{user?.farmName}</p>
           </div>
         </div>
       </div>
