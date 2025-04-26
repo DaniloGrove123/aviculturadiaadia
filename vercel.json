@@ -4,23 +4,12 @@
     {
       "src": "api/index.mjs",
       "use": "@vercel/node"
-    },
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist/public"
-      }
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
       "dest": "/api/index.mjs"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/dist/public/$1"
     }
   ]
 }
