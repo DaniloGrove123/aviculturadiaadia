@@ -1,4 +1,4 @@
-import { db } from "@db";
+import { db } from "../db";
 import { 
   users, 
   henCountHistory, 
@@ -14,11 +14,11 @@ import {
   type StockBalance,
   type FinancialMovement,
   type FinancialBalance,
-} from "@shared/schema";
+} from "../shared/schema";
 import { eq, desc, and, sql } from "drizzle-orm";
 import session from "express-session";
 import connectPg from "connect-pg-simple";
-import { pool } from "@db";
+import { pool } from "../db";
 
 const PostgresSessionStore = connectPg(session);
 
