@@ -18,9 +18,15 @@ export async function getUserByUsername(username) {
 }
 
 export async function comparePasswords(supplied, stored) {
+  console.log('=== [comparePasswords] ===');
+  console.log('stored:', stored);
   const [hashed, salt] = stored.split('.')
+  console.log('hashed:', hashed, 'length:', hashed.length);
+  console.log('salt:', salt, 'length:', salt.length);
   const hashedBuf = Buffer.from(hashed, 'hex');
   const suppliedBuf = await scryptAsync(supplied, salt, 64);
+  console.log('hashedBuf.length:', hashedBuf.length);
+  console.log('suppliedBuf.length:', suppliedBuf.length);
   return timingSafeEqual(hashedBuf, suppliedBuf);
 }
 
