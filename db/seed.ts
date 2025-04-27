@@ -40,7 +40,7 @@ async function seed() {
       password: hashedPassword,
       name: "João da Silva",
       farmName: "Granja Feliz",
-      henCount: 150,
+      henCount: 120,
       eggPrice: "10.00",
       subscriptionStatus: "free"
     }).returning();
@@ -111,7 +111,7 @@ async function seed() {
 
     console.log("Creating egg collections...");
     for (const collection of collections) {
-      await db.insert(eggCollections).values(collection);
+      await db.insert(eggCollections).values({ ...collection, collectionDate: typeof collection.collectionDate === "string" ? collection.collectionDate : collection.collectionDate.toISOString().slice(0, 10) });
     }
 
     // Create stock movements
@@ -155,7 +155,7 @@ async function seed() {
 
     console.log("Creating stock movements...");
     for (const movement of stockMovementsData) {
-      await db.insert(stockMovements).values(movement);
+      await db.insert(stockMovements).values({ ...movement, movementDate: typeof movement.movementDate === "string" ? movement.movementDate : movement.movementDate.toISOString().slice(0, 10), financialMovementId: null });
     }
 
     // Create financial movements
@@ -175,7 +175,7 @@ async function seed() {
         movementType: "expense",
         category: "Ração",
         amount: "250.00",
-        movementDate: new Date(yesterday.setDate(yesterday.getDate() - 5)),
+        movementDate: new Date(yesterday.setDate(yesterday.getDate() - 5)).toISOString().slice(0, 10),
         paymentMethod: "Transferência",
         contact: "Fornecedor de Ração",
         notes: "Compra mensal de ração"
@@ -185,7 +185,7 @@ async function seed() {
         movementType: "income",
         category: "Venda de ovos",
         amount: "300.00",
-        movementDate: new Date(yesterday.setDate(yesterday.getDate() - 3)),
+        movementDate: new Date(yesterday.setDate(yesterday.getDate() - 3)).toISOString().slice(0, 10),
         paymentMethod: "Pix",
         contact: "Mercearia Central",
         notes: "360"
@@ -194,7 +194,7 @@ async function seed() {
 
     console.log("Creating financial movements...");
     for (const movement of financialMovementsData) {
-      await db.insert(financialMovements).values(movement);
+      await db.insert(financialMovements).values({ ...movement, movementType: movement.movementType as "income" | "expense", movementDate: typeof movement.movementDate === "string" ? movement.movementDate : movement.movementDate.toISOString().slice(0, 10) });
     }
 
     console.log("Database seed completed successfully!");

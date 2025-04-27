@@ -133,6 +133,7 @@ class DatabaseStorage implements IStorage {
     const collectionResult = await db.insert(eggCollections)
       .values({
         ...data,
+        collectionDate: typeof data.collectionDate === "string" ? data.collectionDate : data.collectionDate.toISOString().slice(0, 10),
         posturePercentage: posturePercentage.toFixed(2)
       })
       .returning();
@@ -142,8 +143,9 @@ class DatabaseStorage implements IStorage {
       userId: data.userId,
       movementType: "in",
       eggCount: data.eggCount,
-      movementDate: data.collectionDate,
-      notes: `Coleta de ${data.period === "morning" ? "manhã" : "tarde"}`
+      movementDate: typeof data.collectionDate === "string" ? data.collectionDate : data.collectionDate.toISOString().slice(0, 10),
+      notes: `Coleta de ${data.period === "morning" ? "manhã" : "tarde"}`,
+      financialMovementId: null
     });
     
     return collectionResult[0];
@@ -192,8 +194,9 @@ class DatabaseStorage implements IStorage {
         userId,
         movementType: difference > 0 ? "in" : "out",
         eggCount: Math.abs(difference),
-        movementDate: collectionDate,
-        notes: `Ajuste de coleta ${oldCollection[0].period === "morning" ? "manhã" : "tarde"}`
+        movementDate: typeof collectionDate === "string" ? collectionDate : collectionDate.toISOString().slice(0, 10),
+        notes: `Ajuste de coleta ${oldCollection[0].period === "morning" ? "manhã" : "tarde"}`,
+        financialMovementId: null
       });
     }
     

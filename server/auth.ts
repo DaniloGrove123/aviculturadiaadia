@@ -58,21 +58,41 @@ export function setupAuth(app: Express) {
     done(null, user);
   });
 
+  // Adicionada validação de schema Zod e tratamento de erros detalhado
   app.post("/api/register", async (req, res, next) => {
-    const existingUser = await storage.getUserByUsername(req.body.username);
-    if (existingUser) {
-      return res.status(400).send("Username already exists");
+    try {
+      // Importa schema dinamicamente para evitar dependência circular
+      const { insertUserSchema } = await import("@shared/schema");
+      // Valida o body com o schema
+      const parsed = insertUserSchema.safeParse(req.body);
+      if (!parsed.success) {
+        return res.status(400).json({
+          message: "Dados inválidos",
+          errors: parsed.error.errors,
+        });
+      }
+      const data = parsed.data;
+      // Verifica se usuário já existe
+      const existingUser = await storage.getUserByUsername(data.username);
+      if (existingUser) {
+        return res.status(400).json({ message: "Nome de usuário já existe" });
+      }
+      // Cria usuário com senha hash
+      const user = await storage.createUser({
+        ...data,
+        password: await hashPassword(data.password),
+      });
+      req.login(user, (err) => {
+        if (err) {
+          console.error("Erro ao logar após cadastro:", err);
+          return next(err);
+        }
+        res.status(201).json(user);
+      });
+    } catch (error) {
+      console.error("Erro ao registrar usuário:", error);
+      res.status(500).json({ message: "Erro interno ao registrar usuário" });
     }
-
-    const user = await storage.createUser({
-      ...req.body,
-      password: await hashPassword(req.body.password),
-    });
-
-    req.login(user, (err) => {
-      if (err) return next(err);
-      res.status(201).json(user);
-    });
   });
 
   app.post("/api/login", passport.authenticate("local"), (req, res) => {
