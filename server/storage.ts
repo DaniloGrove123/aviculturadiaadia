@@ -1,4 +1,4 @@
-import { db } from "../db";
+import { db } from "../db/index";
 import { 
   users, 
   henCountHistory, 
@@ -18,7 +18,7 @@ import {
 import { eq, desc, and, sql } from "drizzle-orm";
 import session from "express-session";
 import connectPg from "connect-pg-simple";
-import { pool } from "../db";
+import { pool } from "../db/index";
 
 const PostgresSessionStore = connectPg(session);
 
