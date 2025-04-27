@@ -1,4 +1,4 @@
-import { storage } from '../server/storage.js';
+import { storage } from '../dist/server/server/storage.js';
 import { promisify } from 'util';
 import { scrypt, timingSafeEqual } from 'crypto';
 
