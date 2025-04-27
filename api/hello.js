@@ -1,4 +1,4 @@
-module.exports = (req, res) => {
+export default function handler(req, res) {
   console.log('Handler /api/hello executado');
   try {
     res.status(200).json({ message: 'Hello from Avicultura Dia a Dia!' });
@@ -6,4 +6,5 @@ module.exports = (req, res) => {
     console.error('Erro na função /api/hello:', err);
     res.status(500).json({ error: 'Erro interno na função serverless.' });
   }
-};
+}
+
