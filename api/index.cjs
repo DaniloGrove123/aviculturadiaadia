@@ -1,7 +1,15 @@
-console.log('Iniciando api/index.cjs');
+console.log('Iniciando API handler (serverless)');
 
 const serverless = require('serverless-http');
-const app = require('../server/index'); // Importa o app Express já configurado
+const { createApp } = require('../server/app');
 
-console.log('Exportando função serverless com app real');
-module.exports = serverless(app);
+let handler;
+
+module.exports = async (req, res) => {
+  if (!handler) {
+    const app = await createApp();
+    handler = serverless(app);
+  }
+  console.log(`Chamando rota ${req.method} ${req.url}`);
+  return handler(req, res);
+};
